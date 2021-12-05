@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Racket : MonoBehaviour
+public class RacketMovement : MonoBehaviour
 {
     [SerializeField]private float accelSpeed;
     [SerializeField]private Rigidbody racketRigidBody;

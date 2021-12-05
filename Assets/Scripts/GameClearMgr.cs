@@ -7,7 +7,8 @@ public class GameClearMgr : MonoBehaviour
     public int blockQuantity;
     void Update()
     {
-        if(blockQuantity == 0){
+        if(blockQuantity == 0)
+        {
 　　　　　　　　SceneManager.LoadScene("Title");
         }
     }

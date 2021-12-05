@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ball : MonoBehaviour
+public class BallMovement : MonoBehaviour
 {
     /// <summary>
     /// ゲーム開始時の左右方向の決定（ランダム）
@@ -21,9 +21,18 @@ public class Ball : MonoBehaviour
     private int mode;//enum Modeと同様
     private bool gameStarts = false;
     private Vector3 horizontalTransform;
+    private Vector3 backForce;
+    private Vector3 forwardBorce;
+
+    private float xSpeed;
+    private float zSpeed;
+    private float MaxSpeed;
+    private float MinSpeed;
 
     void Start()
     {
+        MaxSpeed = 1.5f * initialVelocity;
+        MinSpeed = MaxSpeed - 1.0f;
         mode = Random.Range(0, (int)Mode.COUNT);
         horizontalTransform = mode switch
         {
@@ -31,21 +40,31 @@ public class Ball : MonoBehaviour
             (int)Mode.INVERTED => Vector3.left,
             _ => throw new System.InvalidOperationException()
         };
+        backForce = (Vector3.back + horizontalTransform) * initialVelocity;
+        forwardBorce = (Vector3.forward + horizontalTransform);
     }
 
     void Update()
     {
+        Debug.Log(rigidBody.velocity.magnitude);
         if (Input.GetKey (KeyCode.S) && !gameStarts)
         {
-            Vector3 backForce = (Vector3.back + horizontalTransform) * initialVelocity;
             rigidBody.AddForce(backForce, ForceMode.VelocityChange);
             gameStarts = true;
         }
 
         //デバッグ用
-        if (Input.GetKey (KeyCode.R)){
-            Vector3 forwardBorce = (Vector3.forward + horizontalTransform);
+        if (Input.GetKey (KeyCode.R))
+        {
             rigidBody.AddForce(forwardBorce, ForceMode.VelocityChange);
         }
+
+        //TODO : 挙動が変なので実装は要検討
+        if(rigidBody.velocity.magnitude < MinSpeed || MaxSpeed < rigidBody.velocity.magnitude)
+        {
+            rigidBody.velocity = new Vector3(xSpeed , 0.0f , zSpeed);
+        }
+        xSpeed = rigidBody.velocity.x;
+        zSpeed = rigidBody.velocity.z;
     }
 }

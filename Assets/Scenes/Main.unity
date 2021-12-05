@@ -1010,7 +1010,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d19d42bea02f4d76ac769ebce45ec89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  initialVelocity: 5
+  rigidBody: {fileID: 946648077}
 --- !u!4 &998957818 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1374199351824041360, guid: e36a4d35ce0bc48829dd0d8ec57c2e59, type: 3}
@@ -1859,7 +1860,7 @@ GameObject:
   - component: {fileID: 1661017304}
   - component: {fileID: 1661017303}
   m_Layer: 0
-  m_Name: WallWeapon (1)
+  m_Name: WallRightWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2141,7 +2142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd9124bc8765947f5927358faa8ba0be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accel: 550
+  accelSpeed: 700
+  racketRigidBody: {fileID: 1843443602}
 --- !u!4 &1854385288 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1374199351824041360, guid: e36a4d35ce0bc48829dd0d8ec57c2e59, type: 3}
@@ -2355,7 +2357,7 @@ GameObject:
   - component: {fileID: 2023531489}
   - component: {fileID: 2023531488}
   m_Layer: 0
-  m_Name: WallWeapon
+  m_Name: WallLeftWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
